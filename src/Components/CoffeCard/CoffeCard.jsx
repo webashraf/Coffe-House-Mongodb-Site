@@ -1,10 +1,19 @@
+import { useEffect, useState } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { BsPencilSquare } from "react-icons/bs";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-const CoffeCard = ({ coffee }) => {
+
+
+
+const CoffeCard = ({ coffee, setDelateCoffee }) => {
+  // const [coffee, setCoffee] = useState({});
+  // const [deleteCoffee, setDelateCoffee] = useState(false)
+
+
   const { name, photo, chef, taste, category, _id } = coffee;
+
 
   const handleDelete = (_id) => {
     console.log(_id);
@@ -25,11 +34,23 @@ const CoffeCard = ({ coffee }) => {
           })
             .then((res) => res.json())
             .then((data) => {
+              setDelateCoffee(true);
               console.log(data);
             });
         }
       });
+
   };
+
+  // useEffect( ()=>{
+  //   fetch(`http://localhost:5000/coffee/${coffeeId}`)
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     console.log(deleteCoffee);
+  //     console.log(data);
+  //     setCoffee(data)
+  //   })
+  // },[deleteCoffee])
 
   return (
     <div className="card card-side bg-base-100 shadow-xl">
