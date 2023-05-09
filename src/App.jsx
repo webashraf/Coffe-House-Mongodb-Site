@@ -10,7 +10,7 @@ function App() {
       <div className='flex gap-10 justify-center mb-20'>
         <Link to={"/"}>Home</Link>
         <Link to={"/addcoffee"}>Add Coffee</Link>
-        <Link to={"/updatecoffee"}>Update Coffee</Link>
+        {/* <Link to={"/updatecoffee"}>Update Coffee</Link> */}
       </div>
       <Outlet></Outlet>
       </>

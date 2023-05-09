@@ -26,11 +26,13 @@ const AddCoffe = () => {
     .then(res => res.json())
     .then(data => {
       console.log(data)
-      data.insertedId && Swal.fire({
-        title: 'success!',
-        text: 'Item added succesfully',
+      data.insertedId &&
+      Swal.fire({
+        position: 'top-end',
         icon: 'success',
-        confirmButtonText: 'Cool'
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 1500
       })
     })
 
