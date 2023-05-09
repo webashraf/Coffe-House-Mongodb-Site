@@ -4,8 +4,9 @@ import Swal from "sweetalert2";
 
 const UpdateCoffe = () => {
 
-    const coffeeData = useLoaderData();
-    console.log(coffeeData);
+    const coffeeDatas = useLoaderData();
+
+    console.log(coffeeDatas);
 
     const handleForm = event =>{
         event.preventDefault();
@@ -21,7 +22,7 @@ const UpdateCoffe = () => {
     
         const coffee = {name, supplier, category, chef, taste, details, photo};
     
-        fetch('http://localhost:5000/coffee', {
+        fetch(`http://localhost:5000/coffee/${coffeeDatas._id}`, {
             method: "PUT",
             headers: {
                 "Content-Type" : "application/json"
@@ -31,14 +32,14 @@ const UpdateCoffe = () => {
         .then(res => res.json())
         .then(data => {
           console.log(data)
-        //   data.insertedId &&
-        //   Swal.fire({
-        //     position: 'top-end',
-        //     icon: 'success',
-        //     title: 'Your work has been saved',
-        //     showConfirmButton: false,
-        //     timer: 1500
-        //   })
+          data.modifiedCount &&
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1500
+          })
         })
     
         console.log(coffee);
@@ -62,7 +63,7 @@ const UpdateCoffe = () => {
                 </label>
                 <input
                   type="text"
-                  defaultValue={coffeeData.name}
+                  defaultValue={coffeeDatas.name}
                   name="name"
                   placeholder="Enter coffe name"
                   className="input input-bordered"
@@ -74,7 +75,7 @@ const UpdateCoffe = () => {
                 </label>
                 <input
                   type="text"
-                  defaultValue={coffeeData.supplier}
+                  defaultValue={coffeeDatas.supplier}
                   name="supplier"
                   placeholder="Enter coffe supplier"
                   className="input input-bordered"
@@ -86,7 +87,7 @@ const UpdateCoffe = () => {
                 </label>
                 <input
                   type="text"
-                  defaultValue={coffeeData.category}
+                  defaultValue={coffeeDatas.category}
                   name="category"
                   placeholder="Enter coffe category"
                   className="input input-bordered"
@@ -102,7 +103,7 @@ const UpdateCoffe = () => {
                 </label>
                 <input
                   type="text"
-                  defaultValue={coffeeData.chef}
+                  defaultValue={coffeeDatas.chef}
                   name="chef"
                   placeholder="Enter coffe chef"
                   className="input input-bordered"
@@ -114,7 +115,7 @@ const UpdateCoffe = () => {
                 </label>
                 <input
                   type="text"
-                  defaultValue={coffeeData.taste}
+                  defaultValue={coffeeDatas.taste}
                   name="taste"
                   placeholder="Enter coffe teste"
                   className="input input-bordered"
@@ -126,7 +127,7 @@ const UpdateCoffe = () => {
                 </label>
                 <input
                   type="text"
-                  defaultValue={coffeeData.details}
+                  defaultValue={coffeeDatas.details}
                   name="details"
                   placeholder="Enter coffe details"
                   className="input input-bordered"
@@ -141,7 +142,7 @@ const UpdateCoffe = () => {
           </label>
           <input
             type="text"
-            defaultValue={coffeeData.photo}
+            defaultValue={coffeeDatas.photo}
             name="photo"
             placeholder="Photo Url"
             className="input input-bordered"
